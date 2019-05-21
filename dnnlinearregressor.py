@@ -145,7 +145,7 @@ def input_fn(csv_data, batch_size, num_epochs=None):
 estimator.train(steps=1000, input_fn=lambda: input_fn(trains, batch_size=128, num_epochs=100))
 
 # evaluate the estimator model
-ev = estimator.evaluate(steps=None, input_fn=lambda: input_fn(trains, batch_size=128, num_epochs=1))
+ev = estimator.evaluate(steps=None, input_fn=lambda: input_fn(tests, batch_size=128, num_epochs=1))
 
 # get the evaluation loss
 loss = ev['loss']
