@@ -19,7 +19,10 @@ from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import tensorflow as tf
 import itertools
 import numpy as np
-from keras.utils import to_categorical
+import requests
+import os
+import gzip
+import shutil
 
 # Set ipython's max row display
 pd.set_option('display.max_row', 1000)
@@ -28,9 +31,15 @@ pd.set_option('display.max_row', 1000)
 pd.set_option('display.max_columns', 50)
 
 # download the dataset and extract it 
-!wget https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz
-!gunzip covtype.data.gz
-!mv covtype.data covtype.csv
+req = requests.get("https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz")
+
+with gzip.open("g.gz", 'rb') as f_in:
+    with open('covtype.csv', 'wb') as f_out:
+        shutil.copyfileobj(f_in, f_out)
+
+#!wget https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz
+#!gunzip covtype.data.gz
+#!mv covtype.data covtype.csv
 
 # read the dataset
 df = pd.read_csv('covtype.csv')
