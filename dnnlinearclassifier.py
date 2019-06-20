@@ -30,7 +30,7 @@ pd.set_option('display.max_row', 1000)
 pd.set_option('display.max_columns', 50)
 
 # download the dataset and extract it 
-req = requests.get("https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz")
+f = requests.get("https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz")
 
 with open('g.gz', 'wb') as fs:
   for chunks in f.iter_content(chunk_size=128):
